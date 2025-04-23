@@ -1,0 +1,58 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 252B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:latest
+#2 DONE 1.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/node:latest@sha256:c5bfe90b30e795ec57bcc0040065ca6f284af84a1dafd22a207bd6b48c39ce01
+#4 DONE 0.0s
+
+#5 [2/5] WORKDIR /app
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 40.36kB 0.1s done
+#6 DONE 0.1s
+
+#7 [3/5] COPY package.json package-lock.json* ./
+#7 DONE 0.0s
+
+#8 [4/5] RUN npm install
+#8 2.519 
+#8 2.519 added 66 packages, and audited 67 packages in 2s
+#8 2.519 
+#8 2.519 14 packages are looking for funding
+#8 2.519   run `npm fund` for details
+#8 2.520 
+#8 2.520 found 0 vulnerabilities
+#8 2.521 npm notice
+#8 2.521 npm notice New major version of npm available! 10.9.2 -> 11.3.0
+#8 2.521 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.3.0
+#8 2.521 npm notice To update run: npm install -g npm@11.3.0
+#8 2.521 npm notice
+#8 DONE 2.7s
+
+#9 [5/5] COPY . .  # This copies all your application files
+#9 ERROR: lstat /#: no such file or directory
+------
+ > [5/5] COPY . .  # This copies all your application files:
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 7)
+Dockerfile:5
+--------------------
+   3 |     COPY package.json package-lock.json* ./
+   4 |     RUN npm install
+   5 | >>> COPY . .  # This copies all your application files
+   6 |     EXPOSE 7777
+   7 |     CMD ["npm", "run" ,"start"]  # or specify your main file directly like 
+--------------------
+ERROR: failed to solve: lstat /#: no such file or directory
